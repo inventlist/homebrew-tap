@@ -6,23 +6,31 @@ class Localvault < Formula
   license "MIT"
 
   depends_on "libsodium"
-
-  uses_from_macos "ruby", since: :catalina
+  depends_on "ruby"
 
   def install
-    ENV["GEM_HOME"] = libexec
-    system "gem", "install", "thor", "-v", "~> 1.3", "--no-document"
-    system "gem", "install", "rbnacl", "-v", "~> 7.1", "--no-document"
-    system "gem", "install", "base64", "--no-document"
+    ENV["GEM_HOME"] = libexec/"gems"
+    ENV["GEM_PATH"] = libexec/"gems"
 
-    libexec.install Dir["lib/**/*"]
+    # Use Homebrew ruby, not system ruby
+    ruby = Formula["ruby"].opt_bin/"ruby"
+    gem = Formula["ruby"].opt_bin/"gem"
+
+    system gem, "install", "thor", "-v", "~> 1.3", "--no-document"
+    system gem, "install", "rbnacl", "-v", "~> 7.1", "--no-document"
+    system gem, "install", "base64", "--no-document"
+
+    # Install lib and bin into libexec
+    (libexec/"lib").install Dir["lib/*"]
     libexec.install "bin/localvault"
+    chmod 0755, libexec/"localvault"
 
+    # Create bin wrapper that sets up gem path and uses Homebrew ruby
     (bin/"localvault").write <<~SH
       #!/bin/bash
-      export GEM_HOME="#{libexec}"
-      export GEM_PATH="#{libexec}"
-      exec ruby -I "#{libexec}" "#{libexec}/localvault" "$@"
+      export GEM_HOME="#{libexec}/gems"
+      export GEM_PATH="#{libexec}/gems"
+      exec "#{ruby}" -I "#{libexec}/lib" "#{libexec}/localvault" "$@"
     SH
   end
 
