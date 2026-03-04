@@ -2,7 +2,7 @@ class Localvault < Formula
   desc "Zero-infrastructure secrets manager with MCP server for AI agents"
   homepage "https://inventlist.com/tools/localvault"
   url "https://github.com/inventlist/localvault/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "c77df088101a19dd929953018b8faaff5a23b6f5d62cc949d483aaa82c1d7624"
+  sha256 "85cdb4a9c3787d19058f9192c6098b583c4d5f2e174c5d7393d9a0d367399fa2"
   license "MIT"
 
   depends_on "libsodium"
@@ -17,24 +17,25 @@ class Localvault < Formula
     gem = Formula["ruby"].opt_bin/"gem"
 
     system gem, "install", "thor", "-v", "~> 1.3", "--no-document"
-    system gem, "install", "rbnacl", "-v", "~> 7.1", "--no-document"
+    system gem, "install", "rbnacl", "-v", "~> 7.1", "--no-document",
+           "--", "--with-sodium-dir=#{Formula["libsodium"].opt_prefix}"
     system gem, "install", "base64", "--no-document"
 
-    # Install lib and bin into libexec
+    # Copy lib and bin into libexec
     (libexec/"lib").install Dir["lib/*"]
-    libexec.install "bin/localvault"
-    chmod 0755, libexec/"localvault"
+    (libexec/"bin").install "bin/localvault"
+    chmod 0755, libexec/"bin/localvault"
 
-    # Create bin wrapper that sets up gem path and uses Homebrew ruby
+    # Wrapper that sets GEM paths and uses Homebrew Ruby
     (bin/"localvault").write <<~SH
       #!/bin/bash
       export GEM_HOME="#{libexec}/gems"
       export GEM_PATH="#{libexec}/gems"
-      exec "#{ruby}" -I "#{libexec}/lib" "#{libexec}/localvault" "$@"
+      exec "#{ruby}" -I "#{libexec}/lib" "#{libexec}/bin/localvault" "$@"
     SH
   end
 
   test do
-    assert_match "localvault #{version}", shell_output("#{bin}/localvault version")
+    assert_match version.to_s, shell_output("#{bin}/localvault version")
   end
 end
