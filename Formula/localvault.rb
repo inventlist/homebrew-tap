@@ -1,8 +1,8 @@
 class Localvault < Formula
   desc "Zero-infrastructure secrets manager with MCP server for AI agents"
   homepage "https://inventlist.com/tools/localvault"
-  url "https://github.com/inventlist/localvault/archive/refs/tags/v0.7.1.tar.gz"
-  sha256 "ec3552c1e0c350e0f0c84d4f570f8af569f05cb8742c34091cf0d350f86e76ff"
+  url "https://github.com/inventlist/localvault/archive/refs/tags/v0.8.0.tar.gz"
+  sha256 "e533d51e6d0faeb8365da62243e5d448b01dc5a0c97e46887ffa8ac3ddf8e3a7"
   license "MIT"
 
   depends_on "libsodium"
@@ -22,8 +22,8 @@ class Localvault < Formula
     system gem, "install", "base64", "--no-document"
     system gem, "install", "lipgloss", "-v", "~> 0.2", "--no-document"
 
-    # Copy lib and bin into libexec
-    (libexec/"lib").install Dir["lib/*"]
+    # Copy lib and bin into libexec (recursive to include cli/ subdirectory)
+    libexec.install "lib"
     (libexec/"bin").install "bin/localvault"
     chmod 0755, libexec/"bin/localvault"
 
