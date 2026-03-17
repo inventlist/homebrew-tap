@@ -11,16 +11,18 @@ class Localvault < Formula
   def install
     ENV["GEM_HOME"] = libexec/"gems"
     ENV["GEM_PATH"] = libexec/"gems"
+    ENV["SODIUM_LIB_DIR"] = Formula["libsodium"].opt_lib.to_s
+    ENV["SODIUM_INCLUDE_DIR"] = Formula["libsodium"].opt_include.to_s
 
     ruby = Formula["ruby"].opt_bin/"ruby"
     gem = Formula["ruby"].opt_bin/"gem"
 
-    # Install the gem and all its dependencies in one step — gemspec is the
-    # single source of truth for runtime deps, so this can never drift.
+    # Build the gem from source — gemspec is the single source of truth
     system gem, "build", "localvault.gemspec"
-    system gem, "install", "--no-document", "--install-dir", libexec/"gems",
-           "--", "--with-sodium-dir=#{Formula["libsodium"].opt_prefix}",
-           Dir["localvault-*.gem"].first
+
+    # Install the built gem + all runtime deps
+    gem_file = Dir["localvault-#{version}.gem"].first || Dir["localvault-*.gem"].first
+    system gem, "install", "--no-document", gem_file
 
     # Create bin wrapper that sets up gem path and uses Homebrew ruby
     (bin/"localvault").write <<~SH
