@@ -1,8 +1,8 @@
 class Localvault < Formula
   desc "Zero-infrastructure secrets manager with MCP server for AI agents"
   homepage "https://inventlist.com/tools/localvault"
-  url "https://github.com/inventlist/localvault/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "dfa302c02d67a263abc9de6289e5ce8aa212c0aad7c39a544dbf40814ed28f9c"
+  url "https://github.com/inventlist/localvault/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "6baa35caf36719d7c71eeeeaa2ec49eed41c6fcf6bc76640165106b542ff889a"
   license "MIT"
 
   depends_on "libsodium"
@@ -12,27 +12,22 @@ class Localvault < Formula
     ENV["GEM_HOME"] = libexec/"gems"
     ENV["GEM_PATH"] = libexec/"gems"
 
-    # Use Homebrew ruby, not system ruby
     ruby = Formula["ruby"].opt_bin/"ruby"
     gem = Formula["ruby"].opt_bin/"gem"
 
-    system gem, "install", "thor", "-v", "~> 1.3", "--no-document"
-    system gem, "install", "rbnacl", "-v", "~> 7.1", "--no-document",
-           "--", "--with-sodium-dir=#{Formula["libsodium"].opt_prefix}"
-    system gem, "install", "base64", "--no-document"
-    system gem, "install", "lipgloss", "-v", "~> 0.2", "--no-document"
+    # Install the gem and all its dependencies in one step — gemspec is the
+    # single source of truth for runtime deps, so this can never drift.
+    system gem, "build", "localvault.gemspec"
+    system gem, "install", "--no-document", "--install-dir", libexec/"gems",
+           "--", "--with-sodium-dir=#{Formula["libsodium"].opt_prefix}",
+           Dir["localvault-*.gem"].first
 
-    # Copy lib and bin into libexec (recursive to include cli/ subdirectory)
-    libexec.install "lib"
-    (libexec/"bin").install "bin/localvault"
-    chmod 0755, libexec/"bin/localvault"
-
-    # Wrapper that sets GEM paths and uses Homebrew Ruby
+    # Create bin wrapper that sets up gem path and uses Homebrew ruby
     (bin/"localvault").write <<~SH
       #!/bin/bash
       export GEM_HOME="#{libexec}/gems"
       export GEM_PATH="#{libexec}/gems"
-      exec "#{ruby}" -I "#{libexec}/lib" "#{libexec}/bin/localvault" "$@"
+      exec "#{ruby}" "#{libexec}/gems/bin/localvault" "$@"
     SH
   end
 
