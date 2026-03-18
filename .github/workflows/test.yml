@@ -1,0 +1,42 @@
+name: Test formulae
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  install:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install localvault from local tap
+        run: |
+          brew tap-new $GITHUB_REPOSITORY_OWNER/tap-test
+          cp Formula/localvault.rb "$(brew --repository)/$GITHUB_REPOSITORY_OWNER/tap-test/Formula/"
+          brew install $GITHUB_REPOSITORY_OWNER/tap-test/localvault
+
+      - name: Verify version
+        run: |
+          localvault version
+
+      - name: Verify basic commands work
+        run: |
+          export LOCALVAULT_HOME=$(mktemp -d)
+
+          # init + set + get + list + delete
+          echo -e "testpass\ntestpass" | localvault init
+          export LOCALVAULT_SESSION=$(echo -e "testpass" | localvault unlock 2>/dev/null | grep LOCALVAULT_SESSION | sed 's/export LOCALVAULT_SESSION="//' | sed 's/"//')
+          localvault set TEST_KEY test_value
+          VALUE=$(localvault get TEST_KEY)
+          [ "$VALUE" = "test_value" ] || { echo "FAIL: get returned '$VALUE'"; exit 1; }
+          localvault list | grep -q TEST_KEY || { echo "FAIL: list missing TEST_KEY"; exit 1; }
+          localvault delete TEST_KEY
+          localvault list | grep -q TEST_KEY && { echo "FAIL: delete didn't work"; exit 1; } || true
+
+          echo "All smoke tests passed"
+
+          # Cleanup
+          rm -rf "$LOCALVAULT_HOME"
