@@ -1,28 +1,28 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.1.0"
+  version "0.1.1"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/inventlist/cli/releases/download/v0.1.0/inventlist_Darwin_arm64.tar.gz"
-      sha256 "fbafd9709168fb5f2d2d5e3743f8ece4be37b4703724eeea8c070099b2e33583"
+      url "https://github.com/inventlist/cli/releases/download/v0.1.1/inventlist_Darwin_arm64.tar.gz"
+      sha256 "e0fe04ac1cb3e98c6adf85de88478009ee0af4c8837c14c161ef68033d85e285"
     end
     on_intel do
-      url "https://github.com/inventlist/cli/releases/download/v0.1.0/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "3e729929ac7e5610ae28684147e42a154c5448daca2d572d67c247b2765af342"
+      url "https://github.com/inventlist/cli/releases/download/v0.1.1/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "c1d1fbc6866a9a91153bea024e43ce80a0c8dd7ea833ca17bc46a76f5fa581fd"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/inventlist/cli/releases/download/v0.1.0/inventlist_Linux_arm64.tar.gz"
-      sha256 "292a8aa20bc614ce481984fb1cab10fe695a2d9d1e3a6b7d819b641b6508fe9b"
+      url "https://github.com/inventlist/cli/releases/download/v0.1.1/inventlist_Linux_arm64.tar.gz"
+      sha256 "3372040f2f59461ed0a8384029abb48a55e0f38a9368e6b6ff5c578f35f09a49"
     end
     on_intel do
-      url "https://github.com/inventlist/cli/releases/download/v0.1.0/inventlist_Linux_x86_64.tar.gz"
-      sha256 "ab52c30ab3ced6c75ed398d84f936355e43e73a63071527b6d1cd3a3917fade5"
+      url "https://github.com/inventlist/cli/releases/download/v0.1.1/inventlist_Linux_x86_64.tar.gz"
+      sha256 "2b7567257c1b45d3d657f86d3c2d909386c6c52bb714fd9843a6a063a4f5afcb"
     end
   end
 
