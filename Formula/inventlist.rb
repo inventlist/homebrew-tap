@@ -5,21 +5,21 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.14.0"
+  version "0.15.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.14.0/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "0ec4e4e013634b564d70d95e8674d12ac78fb119797a51803f0242d7be5c0144"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.15.0/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "13a49166521900a5e0c091b40c46237ce2e19f04c1821802681211fb647520e9"
 
       define_method(:install) do
         bin.install "inventlist"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.14.0/inventlist_Darwin_arm64.tar.gz"
-      sha256 "ee69e7df56e9662aa441a8ae3d56edc0fe9857c88b771a22d462a3fdfd3fd6fb"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.15.0/inventlist_Darwin_arm64.tar.gz"
+      sha256 "e97117724ec4db5324b12548fb7a736713de28d28495904f203e5b08e41b1760"
 
       define_method(:install) do
         bin.install "inventlist"
@@ -29,15 +29,15 @@ class Inventlist < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.14.0/inventlist_Linux_x86_64.tar.gz"
-      sha256 "83d4289f534185c68126afde4e00949736e8cd2193ad4111482be6c3744337ed"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.15.0/inventlist_Linux_x86_64.tar.gz"
+      sha256 "2f5e4b9ec4e196c1d4796ec2545dbfcadaeb2868fb8c509e8d01d43f499dec22"
       define_method(:install) do
         bin.install "inventlist"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.14.0/inventlist_Linux_arm64.tar.gz"
-      sha256 "cafa5461c1dcce051a75f7e774d745500375767d3733631d9c3d14e37c2fc5c4"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.15.0/inventlist_Linux_arm64.tar.gz"
+      sha256 "13411f220a7c245cda01d4dc300b93bae4d5a464c6f8f95002c3b77bfa56bf53"
       define_method(:install) do
         bin.install "inventlist"
       end
