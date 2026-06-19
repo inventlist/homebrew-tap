@@ -5,41 +5,53 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.27.0"
+  version "0.28.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.27.0/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "14603692f743e086a86e64a2928cd5e1a6c353c9e2339218c06d583f589c6a33"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.28.0/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "b297c1e1d2e1cfee7ec73550ac5931267a32bcd6be915a98aed00f2d25f26971"
 
       define_method(:install) do
         bin.install "inventlist"
+        # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
+        # Same binary, name-keyed — invoking it as `np` flips the surface.
+        bin.install_symlink "inventlist" => "np"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.27.0/inventlist_Darwin_arm64.tar.gz"
-      sha256 "24cef8ae18e5fe48f96879697b8c0976c21a218c3c5316a51e78e66b7b9249a6"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.28.0/inventlist_Darwin_arm64.tar.gz"
+      sha256 "b5e2577d2b3ddc8b1cfd8b1bcbb413899ad91af70d26b726eac438c652020cc7"
 
       define_method(:install) do
         bin.install "inventlist"
+        # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
+        # Same binary, name-keyed — invoking it as `np` flips the surface.
+        bin.install_symlink "inventlist" => "np"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.27.0/inventlist_Linux_x86_64.tar.gz"
-      sha256 "64864a821454cb48b7ea81d5596ec150c4dc41cc92c408829478388506687b24"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.28.0/inventlist_Linux_x86_64.tar.gz"
+      sha256 "a5afc1fdaece17acc7ee852dd702ffaf4e83155d5af1a6ba2e7db2ed6e04fae7"
       define_method(:install) do
         bin.install "inventlist"
+        # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
+        # Same binary, name-keyed — invoking it as `np` flips the surface.
+        bin.install_symlink "inventlist" => "np"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.27.0/inventlist_Linux_arm64.tar.gz"
-      sha256 "ffab98aae08b94e000f968a9b342f988674691a9cc9710b54c20274f0d9f13a5"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.28.0/inventlist_Linux_arm64.tar.gz"
+      sha256 "ba1bbfd7da01d5ed937287c4cffd7d14b2f3cbede0d42587d6330595d95f9252"
       define_method(:install) do
         bin.install "inventlist"
+        # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
+        # Same binary, name-keyed — invoking it as `np` flips the surface.
+        bin.install_symlink "inventlist" => "np"
       end
     end
   end
