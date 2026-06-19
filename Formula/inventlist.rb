@@ -5,13 +5,13 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.37.0"
+  version "0.38.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.37.0/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "bd012dcd71d9e1d30d3e5de7fa3364c7ad93e59a3d7b5441955575b76b4b03d7"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.38.0/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "88ccd8c4de546d8e4fdb2f5ac49db2f4f46b53c23f07733430ca0b3e5a9a61cd"
 
       define_method(:install) do
         bin.install "inventlist"
@@ -22,8 +22,8 @@ class Inventlist < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.37.0/inventlist_Darwin_arm64.tar.gz"
-      sha256 "1b0b14ab6c5654af1daf08c62d3457520633eccf86522820c0c973ad3a46542e"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.38.0/inventlist_Darwin_arm64.tar.gz"
+      sha256 "e02b723b0c53910c2d1589bd1f1a2ed55aea87005e35022d43d003cb219e7f78"
 
       define_method(:install) do
         bin.install "inventlist"
@@ -37,8 +37,8 @@ class Inventlist < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.37.0/inventlist_Linux_x86_64.tar.gz"
-      sha256 "6f024b494dde007a74239c42c13ed10d218195793055669edd8edd3c2c886319"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.38.0/inventlist_Linux_x86_64.tar.gz"
+      sha256 "0cf53775b1d988d76666f82a88fe6ae826607c225815a890e5e87055268bdfbd"
       define_method(:install) do
         bin.install "inventlist"
         # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
@@ -48,8 +48,8 @@ class Inventlist < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.37.0/inventlist_Linux_arm64.tar.gz"
-      sha256 "9ec210a247919f036a651ed400ad21be978a436d136ecfc3670eddc14f9902a2"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.38.0/inventlist_Linux_arm64.tar.gz"
+      sha256 "a451bf500ffd7e7efc0a963679013527e425cb84304278aaf81ae49339bbe300"
       define_method(:install) do
         bin.install "inventlist"
         # CLI flavors (plan 28 · WS5): `np` is the nodepad-first entry point.
