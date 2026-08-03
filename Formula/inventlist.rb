@@ -5,78 +5,94 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.54.2"
+  version "0.55.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.54.2/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "4387ac43c6e8b7c6342e5e7de93caf2c1d15566d4396d7d654fb04f3a76e58bc"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.55.0/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "9ef4bb16fd351fb9d69ae2fc6c9239c8056c3aa234551c81a14f03389a1e3289"
 
       define_method(:install) do
+        # This formula installs exactly one command. There are two install
+        # roots — InventList and Nodepad — and neither lays down the other's
+        # name (R1, cli-spec-reconciliation 2026-08-03).
+        #
+        # `np` moved to nodepad-tools/tap/nodepad: two formulae cannot both
+        # provide bin/np, and Homebrew refuses to link the second.
+        # `road` retired with the same ruling — it was never a product, and a
+        # third public command with no package, tap or landing behind it was
+        # contract we were not choosing to keep.
         bin.install "inventlist"
-        # `road` stays here: it is a flavor of this product with no package of
-        # its own. `np` deliberately does NOT — it belongs to the nodepad
-        # formula. Two formulae cannot both provide bin/np; Homebrew refuses to
-        # link the second, so shipping it here made `brew install
-        # nodepad-tools/tap/nodepad` fail for anyone who already had this one.
-        bin.install_symlink "inventlist" => "road"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.54.2/inventlist_Darwin_arm64.tar.gz"
-      sha256 "176bd062f02e96e2661223938543454578e4c177551370efa360d73179741fe1"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.55.0/inventlist_Darwin_arm64.tar.gz"
+      sha256 "760c57dc6d33ca32ca39cbf5b778a36a762dd8341f5eb0709f3cc32abd3767d6"
 
       define_method(:install) do
+        # This formula installs exactly one command. There are two install
+        # roots — InventList and Nodepad — and neither lays down the other's
+        # name (R1, cli-spec-reconciliation 2026-08-03).
+        #
+        # `np` moved to nodepad-tools/tap/nodepad: two formulae cannot both
+        # provide bin/np, and Homebrew refuses to link the second.
+        # `road` retired with the same ruling — it was never a product, and a
+        # third public command with no package, tap or landing behind it was
+        # contract we were not choosing to keep.
         bin.install "inventlist"
-        # `road` stays here: it is a flavor of this product with no package of
-        # its own. `np` deliberately does NOT — it belongs to the nodepad
-        # formula. Two formulae cannot both provide bin/np; Homebrew refuses to
-        # link the second, so shipping it here made `brew install
-        # nodepad-tools/tap/nodepad` fail for anyone who already had this one.
-        bin.install_symlink "inventlist" => "road"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.54.2/inventlist_Linux_x86_64.tar.gz"
-      sha256 "8a5fa1a005f109e0047e9ce62c2541118e8dbb91dc5a6dc76e8836ccd5b864f2"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.55.0/inventlist_Linux_x86_64.tar.gz"
+      sha256 "e9ed8cae77235ad7956fb7699923d68546ea8dc4744f8e143b6b726cdd783cb3"
       define_method(:install) do
+        # This formula installs exactly one command. There are two install
+        # roots — InventList and Nodepad — and neither lays down the other's
+        # name (R1, cli-spec-reconciliation 2026-08-03).
+        #
+        # `np` moved to nodepad-tools/tap/nodepad: two formulae cannot both
+        # provide bin/np, and Homebrew refuses to link the second.
+        # `road` retired with the same ruling — it was never a product, and a
+        # third public command with no package, tap or landing behind it was
+        # contract we were not choosing to keep.
         bin.install "inventlist"
-        # `road` stays here: it is a flavor of this product with no package of
-        # its own. `np` deliberately does NOT — it belongs to the nodepad
-        # formula. Two formulae cannot both provide bin/np; Homebrew refuses to
-        # link the second, so shipping it here made `brew install
-        # nodepad-tools/tap/nodepad` fail for anyone who already had this one.
-        bin.install_symlink "inventlist" => "road"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.54.2/inventlist_Linux_arm64.tar.gz"
-      sha256 "2ccf2b2647721a7c86bb21d31720dcdd5b342558c60f134afc72c686602ea04f"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.55.0/inventlist_Linux_arm64.tar.gz"
+      sha256 "fce9a43d276a002a8aacd48b9203f93249239c6527019b679145c5ea7a21e772"
       define_method(:install) do
+        # This formula installs exactly one command. There are two install
+        # roots — InventList and Nodepad — and neither lays down the other's
+        # name (R1, cli-spec-reconciliation 2026-08-03).
+        #
+        # `np` moved to nodepad-tools/tap/nodepad: two formulae cannot both
+        # provide bin/np, and Homebrew refuses to link the second.
+        # `road` retired with the same ruling — it was never a product, and a
+        # third public command with no package, tap or landing behind it was
+        # contract we were not choosing to keep.
         bin.install "inventlist"
-        # `road` stays here: it is a flavor of this product with no package of
-        # its own. `np` deliberately does NOT — it belongs to the nodepad
-        # formula. Two formulae cannot both provide bin/np; Homebrew refuses to
-        # link the second, so shipping it here made `brew install
-        # nodepad-tools/tap/nodepad` fail for anyone who already had this one.
-        bin.install_symlink "inventlist" => "road"
       end
     end
   end
 
   def caveats
     <<~EOS
-      `np` now ships with the Nodepad CLI, which installs the same binary
-      under its own name:
+      This package installs `inventlist` only.
+
+      `np` ships with the Nodepad CLI — the same binary under its own name:
 
         brew install nodepad-tools/tap/nodepad
 
       One codebase, two distributions — whichever you install decides the
       default command. Installing both is supported.
+
+      `road` has been retired. Its verbs live on unchanged as
+      `inventlist roadmaps …` (or `i roadmaps …`).
     EOS
   end
 
