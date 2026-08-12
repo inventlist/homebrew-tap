@@ -5,13 +5,13 @@
 class Inventlist < Formula
   desc "InventList CLI — command your whole stack from the terminal"
   homepage "https://inventlist.com/tools/cli"
-  version "0.56.0"
+  version "0.57.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.56.0/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "022b6e0450bd583305eba5bd8acf66f91316b76112c697a2f89c40bd498a2842"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.57.0/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "b47dbf37964e77ec7d97c9a2848bb54e3e75e8068700e2b55ca88bc1b4cb07f1"
 
       define_method(:install) do
         # This formula installs exactly one command. There are two install
@@ -27,8 +27,8 @@ class Inventlist < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.56.0/inventlist_Darwin_arm64.tar.gz"
-      sha256 "27e98f0a5582719db9fdf6fb9e6b058cef93b841559d17269bc78e4f612d5249"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.57.0/inventlist_Darwin_arm64.tar.gz"
+      sha256 "ee4384af7b29ad6fe03f80de9ebb7790a3ed67c2db8009d28c1e45ba818a1de6"
 
       define_method(:install) do
         # This formula installs exactly one command. There are two install
@@ -47,8 +47,8 @@ class Inventlist < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.56.0/inventlist_Linux_x86_64.tar.gz"
-      sha256 "fc407b223a570e096f99fcb92abb256172a111403a14130880f6223382e71803"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.57.0/inventlist_Linux_x86_64.tar.gz"
+      sha256 "b921a71389d7522b22c230b493bea057ec45794c48b24271c7ba7de471cf792e"
       define_method(:install) do
         # This formula installs exactly one command. There are two install
         # roots — InventList and Nodepad — and neither lays down the other's
@@ -63,8 +63,8 @@ class Inventlist < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.56.0/inventlist_Linux_arm64.tar.gz"
-      sha256 "d7a397a94b62c371716095b11eeaa49e7e1899e51c161d4491df39cf5e070eba"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.57.0/inventlist_Linux_arm64.tar.gz"
+      sha256 "4d7447a650b562e84cd32606e253133d8b610b021e29caf294e552c185add84f"
       define_method(:install) do
         # This formula installs exactly one command. There are two install
         # roots — InventList and Nodepad — and neither lays down the other's
