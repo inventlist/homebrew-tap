@@ -4,26 +4,26 @@
 class Inventlist < Formula
   desc "Command-line tools for publishing and operating projects"
   homepage "https://inventlist.com"
-  version "0.59.2"
+  version "0.59.3"
 
   on_macos do
     on_arm do
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.2/inventlist_Darwin_arm64.tar.gz"
-      sha256 "bd247a4aa2ffd009acbac9221809568bb3239bd00cc0b180998fded9fbef6545"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.3/inventlist_Darwin_arm64.tar.gz"
+      sha256 "d9862687664d536a0bd42b6674e3c0614f3f479ce8cd3956e53866617e66ba5e"
     end
     on_intel do
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.2/inventlist_Darwin_x86_64.tar.gz"
-      sha256 "cb6800eabd4fde041a6bbbb8d100591599ec9002e82ab0935e1a5904ac8cfecd"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.3/inventlist_Darwin_x86_64.tar.gz"
+      sha256 "152f88a9100bcce19819b087a63ee9baec37d23fb93d0ba4042148c79a0421ae"
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.2/inventlist_Linux_arm64.tar.gz"
-      sha256 "cf9209cb929b8d3c74eff270138e866c994062d73b357b85205bc269a559af23"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.3/inventlist_Linux_arm64.tar.gz"
+      sha256 "0f0ae2adb27bfc518b49fb0d36bc45b897d0669c3b19fbcdd981af78ac30a403"
     end
     on_intel do
-      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.2/inventlist_Linux_x86_64.tar.gz"
-      sha256 "f3379711b03d1f181d4188d5bd11509620b793ba7baac03c1d1ed5365c7aaf11"
+      url "https://github.com/inventlist/cli-releases/releases/download/v0.59.3/inventlist_Linux_x86_64.tar.gz"
+      sha256 "88c509bb1ed30c054acc24d6d47e1593c9a8e01faac1b39597f8a69f6d645041"
     end
   end
 
@@ -33,7 +33,7 @@ class Inventlist < Formula
   end
 
   test do
-    assert_equal "inventlist v0.59.2", shell_output("#{bin}/inventlist version").strip
-    assert_equal "inventlist v0.59.2", shell_output("#{bin}/i version").strip
+    assert_equal "inventlist v0.59.3", shell_output("#{bin}/inventlist version").strip
+    assert_equal "inventlist v0.59.3", shell_output("#{bin}/i version").strip
   end
 end
