@@ -8,6 +8,8 @@ class Localvault < Formula
   depends_on "libsodium"
   depends_on "ruby"
 
+  conflicts_with "lv", because: "both install an `lv` binary"
+
   def install
     ENV["GEM_HOME"] = libexec/"gems"
     ENV["GEM_PATH"] = libexec/"gems"
@@ -23,6 +25,14 @@ class Localvault < Formula
 
     # Create bin wrapper that sets up gem path and uses Homebrew ruby
     (bin/"localvault").write <<~SH
+      #!/bin/bash
+      export GEM_HOME="#{libexec}/gems"
+      export GEM_PATH="#{libexec}/gems"
+      exec "#{ruby}" "#{libexec}/gems/bin/localvault" "$@"
+    SH
+
+    # Short alias — `localvault` stays the canonical binary
+    (bin/"lv").write <<~SH
       #!/bin/bash
       export GEM_HOME="#{libexec}/gems"
       export GEM_PATH="#{libexec}/gems"
