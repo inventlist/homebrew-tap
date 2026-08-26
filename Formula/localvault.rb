@@ -1,8 +1,8 @@
 class Localvault < Formula
   desc "Zero-infrastructure secrets manager with MCP server for AI agents"
   homepage "https://inventlist.com/tools/localvault"
-  url "https://github.com/inventlist/localvault/archive/refs/tags/v1.12.2.tar.gz"
-  sha256 "dfddff8008192a6ed57dcb8e63c85ae8e7a86c0def864f9b2a5bcf3299dd8c7e"
+  url "https://github.com/inventlist/localvault/archive/refs/tags/v1.12.3.tar.gz"
+  sha256 "67134625a56715c65720f822a44987788c7e630a9c8dd568f820148d27358e97"
   license "Apache-2.0"
 
   depends_on "libsodium"
