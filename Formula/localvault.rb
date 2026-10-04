@@ -23,21 +23,23 @@ class Localvault < Formula
     # Install the built gem + all runtime deps into GEM_HOME
     system gem, "install", "--no-document", "localvault-#{version}.gem"
 
-    # Create bin wrapper that sets up gem path and uses Homebrew ruby
-    (bin/"localvault").write <<~SH
+    # Bin wrapper that sets up gem path and uses Homebrew ruby. It first saves
+    # the caller's GEM_HOME/GEM_PATH so `localvault exec` can hand them back to
+    # the child instead of leaking localvault's libexec gems into it.
+    wrapper = <<~SH
       #!/bin/bash
+      unset LOCALVAULT_ORIG_GEM_HOME LOCALVAULT_ORIG_GEM_PATH
+      if [ -n "${GEM_HOME+x}" ]; then export LOCALVAULT_ORIG_GEM_HOME="$GEM_HOME"; fi
+      if [ -n "${GEM_PATH+x}" ]; then export LOCALVAULT_ORIG_GEM_PATH="$GEM_PATH"; fi
+      export LOCALVAULT_WRAPPED=1
       export GEM_HOME="#{libexec}/gems"
       export GEM_PATH="#{libexec}/gems"
       exec "#{ruby}" "#{libexec}/gems/bin/localvault" "$@"
     SH
+    (bin/"localvault").write wrapper
 
     # Short alias — `localvault` stays the canonical binary
-    (bin/"lv").write <<~SH
-      #!/bin/bash
-      export GEM_HOME="#{libexec}/gems"
-      export GEM_PATH="#{libexec}/gems"
-      exec "#{ruby}" "#{libexec}/gems/bin/localvault" "$@"
-    SH
+    (bin/"lv").write wrapper
   end
 
   test do
